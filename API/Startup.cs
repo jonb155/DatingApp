@@ -18,7 +18,7 @@ namespace API
 {
     public class Startup
     {
-
+        private const string Origins = "http://localhost:4200";
         private readonly IConfiguration _config;
 
         public Startup(IConfiguration config)
@@ -54,6 +54,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins(Origins));
 
             app.UseAuthorization();
 
